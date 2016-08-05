@@ -10,7 +10,12 @@
     <meta name="author" content="">
 
     <title>HR System</title>
-
+    
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?php print base_url();?>assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php print base_url();?>assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php print base_url();?>assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php print base_url();?>assets/favicon/favicon-16x16.png">
+    
     <!-- Bootstrap core CSS -->
     <link href="<?php print base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
     <!-- Bootstrap theme -->
@@ -36,7 +41,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php print site_url('login');?>"><?php print "HR System";?></a>
+          <a class="navbar-brand" href="<?php print site_url('login');?>">
+              <?php print "HR System";?>
+          </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

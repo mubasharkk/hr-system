@@ -18,16 +18,16 @@ class RequestController extends CI_Controller{
         parent::__construct();
 
         // check if user is logged in
-        if(!$this->users->isAuthorized()){
-            redirect('login');
-        }               
-                        
         // load request model
         $this->load->model('requests');
     }
     
     function index (){
         
+        if(!$this->users->isAuthorized()){
+            redirect('login');
+        }               
+                        
         // get all requests list
         $requests = $this->requests->getAll();
         
@@ -84,6 +84,10 @@ class RequestController extends CI_Controller{
     
     public function reviewRequest($reqId) {
         
+        if(!$this->users->isAuthorized()){
+            redirect('login');
+        }               
+                        
         if(!intval($reqId)) redirect ('requests/list');
         
         $request = $this->requests->getById($reqId);
