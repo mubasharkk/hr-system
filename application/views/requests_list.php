@@ -10,9 +10,11 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Password</th>
+                        <th>CNIC Number</th>
+                        <th>Office Loc.</th>
+                        <th>Emp. Type</th>
+                        <th>Manager</th>
+                        <th>Contact</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -20,18 +22,20 @@
                 <tbody>
                     <?php foreach ($requests as $req): ?>
                         <tr>
-                            <td><?php print $req->uid; ?></td>
+                            <td><?php print $req->req_id; ?></td>
                             <td><?php print $req->display_name; ?></td>
-                            <td><?php print $req->username; ?></td>
-                            <td><?php print $req->mail; ?></td>
-                            <td><?php print $req->password; ?></td>
+                            <td><?php print $req->cnic_number; ?></td>
+                            <td><?php print $req->office_id; ?></td>
+                            <td><?php print $req->user_type; ?></td>
+                            <td><?php print $req->manager_name; ?></td>
+                            <td>
+                                <?php print $req->landline; ?><br/>
+                                <?php print $req->mobile_phone; ?><br/>
+                                <?php print $req->mail; ?>
+                            </td>
                             <td><?php print $req->created_at; ?></td>
                             <td>                               
-                                <?php print anchor("user/edit/{$req->uid}",'Edit User', array('class' => 'btn btn-success btn-xs'));?>
-                                &nbsp;
-                                |
-                                &nbsp;
-                                <?php print anchor("user/delete/{$req->uid}",'Delete User', array('class' => 'btn btn-danger btn-xs'));?>                                
+                                <?php print anchor("user/edit/{$req->req_id}",'Review', array('class' => 'btn btn-success btn-xs'));?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -17,16 +17,20 @@ class RequestController extends CI_Controller{
     function __construct() {
         parent::__construct();
         
+        // load request model
         $this->load->model('requests');
     }
     
     function index (){
         
-        
+        // get all requests list
         $requests = $this->requests->getAll();
         
+        // view html header
         $this->load->view('header');
+        // show list of requests
         $this->load->view('requests_list', array('requests' => $requests));
+        // show html footer
         $this->load->view('footer');
         
         
@@ -36,27 +40,31 @@ class RequestController extends CI_Controller{
         
         $hidden = array();
 
-        $this->form_validation->set_rules('username', 'Username', 'is_unique[users.username]');            
-        $this->form_validation->set_rules('mail', 'Email', 'is_unique[users.mail]');            
         $this->form_validation->set_rules('display_name', 'Display Name', 'required');
         
-        $this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[16]');        
+        $this->form_validation->set_rules('cnic_number', 'CNIC Number', 'required|exact_length[15]');        
+        $this->form_validation->set_rules('office_loc', 'Office Location', 'required');        
+        $this->form_validation->set_rules('employee_type', 'Employee Type', 'required');        
+        $this->form_validation->set_rules('manager_name', 'Office Location', 'required');        
+        $this->form_validation->set_rules('phone', 'Phone (Landline)', 'required');        
+        $this->form_validation->set_rules('phone_mobile', 'Phone (Mobile)', 'integer');        
+        $this->form_validation->set_rules('mail', 'Email', 'valid_email');        
         
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
-        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
-        $this->form_validation->set_rules('mail', 'Email', 'required|valid_email');
-
         if ($this->form_validation->run() == TRUE) {
 
-
             $data = array(
-                'username' => $this->input->post('username'),
+                'office_id' => $this->input->post('office_loc'),
                 'display_name' => $this->input->post('display_name'),
                 'mail' => $this->input->post('mail'),
-                'password' => $this->input->post('password'),
+                'user_type' => $this->input->post('employee_type'),
+                'landline' => $this->input->post('phone'),
+                'mobile_phone' => $this->input->post('phone_mobile'),
+                'manager_name' => $this->input->post('manager_name'),
+                'cnic_number' => $this->input->post('cnic_number'),
+                'phone_ext' => $this->input->post('phone_ext'),
             );
 
-            $this->users->create($data);
+            $this->requests->create($data);
 
             redirect('requests/');
         }
