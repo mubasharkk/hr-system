@@ -10,9 +10,9 @@ class Users extends CI_Model{
     const TABLE = 'users';
     
     static $roles = array(
-        1 => 'Administrator',
-        2 => 'Human Resource Manager',
-        3 => 'Manager Information Systems'
+        'admin' => 'Administrator',
+        'hr' => 'Human Resource Manager',
+        'mis' => 'Manager Information Systems'
     );        
     
     function getAll(){
@@ -49,4 +49,34 @@ class Users extends CI_Model{
         return $query->row();
     }
     
+    
+    static function displayRoles($role_ids){
+        
+        $role_ids = !is_array($role_ids) ? json_decode($role_ids) : $role_ids;
+        
+        return array_intersect_key(self::$roles, array_flip($role_ids));
+        
+    }
+    
+    
+    function checkLogin($username, $pass){
+        
+        $this->db->where(array(
+            'username' => $username,
+            'password' => md5($pass)
+        ));
+        
+        $query = $this->db->get(self::TABLE);
+        
+        return $query->row();
+        
+    }
+    
+    
+    function isAuthorized (){
+        
+        $uid = $this->session->has_userdata('uid');
+        
+        return $uid ? TRUE : FALSE;
+    }
 }

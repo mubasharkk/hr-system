@@ -2,9 +2,11 @@
 
     <div class="row">
         
-        <h2>
+        <h2 class="text-center">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <?php print !empty($user->display_name) ? "Edit {$user->display_name}" : 'Add new user';?>
         </h2>
+        <hr/>
         <div class="col-md-6 col-md-offset-3">
             <?php print form_open(NULL, array(), $hidden);?>
             
@@ -33,6 +35,11 @@
             <div class="form-group">
                 <?php print form_label('Confirm Password');?>
                 <?php print form_password('passconf', NULL, array('class' => 'form-control', 'required' => 1));?>
+            </div>
+            
+            <div class="form-group">
+                <?php print form_label('User Role');?>
+                <?php print form_multiselect('user_roles[]', Users::$roles,  $user->user_roles, array('class' => 'form-control', 'required' => 1));?>
             </div>
             
             <div class="form-group">

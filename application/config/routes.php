@@ -53,6 +53,9 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['login'] = "HomeController/index";
+$route['logout'] = "HomeController/logout";
+
 $route['user/add'] = "Welcome/insertUser";
 $route['users/list'] = "Welcome/index";
 $route['user/edit/(:num)'] = "Welcome/insertUser/$1";

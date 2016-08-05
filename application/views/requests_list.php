@@ -3,7 +3,8 @@
 
     <div class="row">
         
-        <h2>Requests List</h2>
+        <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Requests List</h2>
+        <hr/>        
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>

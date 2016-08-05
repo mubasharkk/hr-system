@@ -16,7 +16,12 @@ class RequestController extends CI_Controller{
     
     function __construct() {
         parent::__construct();
-        
+
+        // check if user is logged in
+        if(!$this->users->isAuthorized()){
+            redirect('login');
+        }               
+                        
         // load request model
         $this->load->model('requests');
     }

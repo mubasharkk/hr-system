@@ -36,20 +36,48 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><?php print "HR System";?></a>
+          <a class="navbar-brand" href="<?php print site_url('login');?>"><?php print "HR System";?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
+          <?php if($this->users->isAuthorized()) :?>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+                  Users 
+                  <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu">
-                <li><a href="<?php print site_url('users/list');?>">View all users</a></li>
-                <li><a href="<?php print site_url('user/add');?>">Add User</a></li>
+                <li>
+                    <a href="<?php print site_url('users/list');?>">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> View all users
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php print site_url('user/add');?>">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add User
+                    </a>
+                </li>
               </ul>
             </li>
-            <li><a href="<?php print site_url('requests');?>">Requests</a></li>
+            <li>
+                <a href="<?php print site_url('requests');?>">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Requests
+                </a>
+            </li>
+            
+            <?php endif;?>
             <li><a href="<?php print site_url();?>">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    
+    <?php if($this->users->isAuthorized()) :?>
+    <div class="container">
+        <div class="col-md-12 text-right">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Welcome <strong><?php print $this->session->userdata('display_name');?></strong> | 
+            <?php print anchor('logout','Logout');?>
+        </div>
+    </div>
+    <?php endif;?>

@@ -3,7 +3,8 @@
 
     <div class="row">
         
-        <h2>All Users List</h2>
+        <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> All Users List</h2>
+        <hr/>
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>
@@ -12,7 +13,7 @@
                         <th>Name</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th>Password</th>
+                        <th>Roles</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -24,7 +25,7 @@
                             <td><?php print $u->display_name; ?></td>
                             <td><?php print $u->username; ?></td>
                             <td><?php print $u->mail; ?></td>
-                            <td><?php print $u->password; ?></td>
+                            <td><?php print implode('<br/>',Users::displayRoles($u->user_roles)); ?></td>
                             <td><?php print $u->created_at; ?></td>
                             <td>                               
                                 <?php print anchor("user/edit/{$u->uid}",'Edit User', array('class' => 'btn btn-success btn-xs'));?>
