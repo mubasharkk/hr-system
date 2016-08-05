@@ -9,6 +9,12 @@ class Users extends CI_Model{
     
     const TABLE = 'users';
     
+    static $roles = array(
+        1 => 'Administrator',
+        2 => 'Human Resource Manager',
+        3 => 'Manager Information Systems'
+    );        
+    
     function getAll(){
         $query = $this->db->get(self::TABLE);
         

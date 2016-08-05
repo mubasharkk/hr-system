@@ -60,3 +60,4 @@ $route['user/delete/:num'] = "Welcome/insertUser";
 
 $route['requests'] = "RequestController/index";
 $route['request/add'] = "RequestController/addRequest";
+$route['request/review/(:num)'] = "RequestController/reviewRequest/$1";

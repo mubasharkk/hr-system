@@ -47,6 +47,51 @@ class RequestController extends CI_Controller{
         $this->form_validation->set_rules('employee_type', 'Employee Type', 'required');        
         $this->form_validation->set_rules('manager_name', 'Office Location', 'required');        
         $this->form_validation->set_rules('phone', 'Phone (Landline)', 'required');        
+        $this->form_validation->set_rules('phone_mobile', 'Phone (Mobile)', 'numeric');        
+        $this->form_validation->set_rules('dob', 'Date of Birth', 'required|regex_match[/^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$/]');        
+        $this->form_validation->set_rules('mail', 'Email', 'valid_email');        
+        
+        if ($this->form_validation->run() == TRUE) {
+
+            $data = array(
+                'office_id' => $this->input->post('office_loc'),
+                'display_name' => $this->input->post('display_name'),
+                'mail' => $this->input->post('mail'),
+                'user_type' => $this->input->post('employee_type'),
+                'landline' => $this->input->post('phone'),
+                'mobile_phone' => $this->input->post('phone_mobile'),
+                'manager_name' => $this->input->post('manager_name'),
+                'cnic_number' => $this->input->post('cnic_number'),
+                'dob' => $this->input->post('dob'),
+                'phone_ext' => $this->input->post('phone_ext'),
+            );
+
+            $this->requests->create($data);
+
+            redirect('requests/');
+        }
+
+
+        $this->load->view('header');
+        $this->load->view('request_add_form', array('hidden' => $hidden));
+        $this->load->view('footer');
+    }    
+    
+    public function reviewRequest($reqId) {
+        
+        if(!intval($reqId)) redirect ('requests/list');
+        
+        $request = $this->requests->getById($reqId);
+        
+        $hidden = array('req_id' => $reqId);
+
+        $this->form_validation->set_rules('display_name', 'Display Name', 'required');
+        
+        $this->form_validation->set_rules('cnic_number', 'CNIC Number', 'required|exact_length[15]');        
+        $this->form_validation->set_rules('office_loc', 'Office Location', 'required');        
+        $this->form_validation->set_rules('employee_type', 'Employee Type', 'required');        
+        $this->form_validation->set_rules('manager_name', 'Office Location', 'required');        
+        $this->form_validation->set_rules('phone', 'Phone (Landline)', 'required');        
         $this->form_validation->set_rules('phone_mobile', 'Phone (Mobile)', 'integer');        
         $this->form_validation->set_rules('mail', 'Email', 'valid_email');        
         
@@ -71,7 +116,7 @@ class RequestController extends CI_Controller{
 
 
         $this->load->view('header');
-        $this->load->view('request_add_form', array('hidden' => $hidden));
+        $this->load->view('request_review_form', array('hidden' => $hidden, 'req' => $request));
         $this->load->view('footer');
     }    
 }

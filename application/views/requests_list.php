@@ -35,7 +35,7 @@
                             </td>
                             <td><?php print $req->created_at; ?></td>
                             <td>                               
-                                <?php print anchor("user/edit/{$req->req_id}",'Review', array('class' => 'btn btn-success btn-xs'));?>
+                                <?php print anchor("request/review/{$req->req_id}",'Review', array('class' => 'btn btn-success btn-xs'));?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
