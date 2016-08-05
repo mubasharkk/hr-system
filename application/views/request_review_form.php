@@ -4,6 +4,7 @@
     <div class="row">
 
         <h2>
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
             Review Request for ID (# <?php print $req->req_id;?>)
         </h2>
 

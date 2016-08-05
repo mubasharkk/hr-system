@@ -67,7 +67,16 @@
             </li>
             
             <?php endif;?>
-            <li><a href="<?php print site_url();?>">Contact</a></li>
+            <li>
+                <a href="<?php print site_url('request/add');?>">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Requests
+                </a>
+            </li>
+            <li>
+                <a href="<?php print site_url('contact');?>">
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Contact
+                </a>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

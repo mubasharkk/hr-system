@@ -4,8 +4,10 @@
     <div class="row">
 
         <h2>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Create new request for ID
         </h2>
+        <hr/>
 
         <?php echo validation_errors('<div class="alert alert-danger" role="alert">', '</div>'); ?>
 

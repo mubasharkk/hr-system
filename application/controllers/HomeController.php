@@ -54,6 +54,14 @@ class HomeController extends CI_Controller{
         
     }
     
+    function contact (){
+        
+        $this->load->view('header');
+        $this->load->view('contact_page');
+        $this->load->view('footer');
+        
+    }
+    
     function logout(){
         
         $this->session->sess_destroy();
